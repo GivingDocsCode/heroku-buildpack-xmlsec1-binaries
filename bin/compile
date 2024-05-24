@@ -3,12 +3,23 @@
 # Exit on error
 set -e
 
+# Define the build directory (use a writable directory for local testing)
+BUILD_DIR=$1
+
+echo "Building in directory: $BUILD_DIR"
+
 # Extract the pre-built binaries
-mkdir -p $1/.apt
-tar -xzvf $(dirname $0)/../xmlsec-build.tar.gz -C $1/.apt
+mkdir -p $BUILD_DIR/.apt
+tar -xzvf $(dirname $0)/../xmlsec-build.tar.gz -C $BUILD_DIR/.apt
 
 # Ensure the binaries are available in the PATH
-export PATH=$1/.apt/usr/bin:$PATH
-export LD_LIBRARY_PATH=$1/.apt/usr/lib:$LD_LIBRARY_PATH
+export PATH=$BUILD_DIR/.apt/usr/bin:$PATH
+export LD_LIBRARY_PATH=$BUILD_DIR/.apt/usr/lib:$LD_LIBRARY_PATH
+
+echo "PATH after extraction: $PATH"
+echo "LD_LIBRARY_PATH after extraction: $LD_LIBRARY_PATH"
+
+ls -l $BUILD_DIR/.apt/usr/bin
+ls -l $BUILD_DIR/.apt/usr/lib
 
 echo "xmlsec1 and dependencies have been installed in .apt directory"
