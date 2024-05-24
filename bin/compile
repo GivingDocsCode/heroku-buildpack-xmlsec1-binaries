@@ -4,11 +4,11 @@
 set -e
 
 # Extract the pre-built binaries
-mkdir -p /app/.apt
-tar -xzvf $(dirname $0)/../xmlsec-build.tar.gz -C /app/.apt
+mkdir -p $1/.apt
+tar -xzvf $(dirname $0)/../xmlsec-build.tar.gz -C $1/.apt
 
 # Ensure the binaries are available in the PATH
-export PATH=/app/.apt/usr/bin:$PATH
-export LD_LIBRARY_PATH=/app/.apt/usr/lib:$LD_LIBRARY_PATH
+export PATH=$1/.apt/usr/bin:$PATH
+export LD_LIBRARY_PATH=$1/.apt/usr/lib:$LD_LIBRARY_PATH
 
 echo "xmlsec1 and dependencies have been installed in .apt directory"
