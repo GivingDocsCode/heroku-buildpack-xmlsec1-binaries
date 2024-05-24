@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+echo "Custom XMLSec Buildpack"
+exit 0
